@@ -12,6 +12,7 @@
 #include "../snapshot.h"
 #include "../display.h"
 #include "resampler.h"
+#include "sinc_hann.h"
 
 #include "bapu/snes/snes.hpp"
 
@@ -175,7 +176,7 @@ static void UpdatePlaybackRate(void)
 
     if (Settings.MSU1)
     {
-        time_ratio = time_ratio * 44100 / 32040;
+        time_ratio = time_ratio * 44100.0 / (double)Settings.SoundInputRate;
         msu::resampler.time_ratio(time_ratio);
     }
 }
@@ -497,3 +498,10 @@ bool8 S9xSPCDump(const char *filename)
 
     return true;
 }
+
+void S9xSetResamplerType (int type)
+{
+    spc::resampler.set_interpolation(type);
+    msu::resampler.set_interpolation(type);
+}
+
