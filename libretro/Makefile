@@ -2,7 +2,7 @@ DEBUG = 0
 HAVE_EXCEPTIONS = 0
 HAVE_STRINGS_H = 1
 
-LTO ?= -flto
+# LTO ?= -flto
 SPACE :=
 SPACE := $(SPACE) $(SPACE)
 BACKSLASH :=
